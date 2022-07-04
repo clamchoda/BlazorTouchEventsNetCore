@@ -1,0 +1,43 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<ul class="dropzone"
+    ondragover="event.preventDefault();"
+    ondragstart="event.dataTransfer.setData('', event.target.id);"
+    @ondrop="HandleDrop">
+
+    <li class="draggable" draggable="true"  @ondragstart="@(() => HandleDragStart(1))" >
+        <p class="description">Description 1</p>
+       
+    </li>
+
+</ul>
+
+
+<ul class="dropzone"
+    ondragover="event.preventDefault();"
+    ondragstart="event.dataTransfer.setData('', event.target.id);"
+    @ondrop="HandleDrop">
+</ul>
+
+@code{
+
+
+    [Inject] IJSRuntime JsRuntime { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        // Js event monitoring.
+        if(firstRender)
+            await JsRuntime.InvokeVoidAsync("DragMonitor");
+    }
+    private async Task HandleDrop()
+    {
+        await JsRuntime.InvokeVoidAsync("alert", "Dropped handled on blazor."); // Alert
+    }
+
+    private async Task HandleDragStart(int itemId)
+    {
+       
+    }
+}

@@ -1,0 +1,77 @@
+﻿@page "/"
+@namespace BlazorTouchEventsNetCore.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlazorTouchEventsNetCore</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+
+    @*Mobile drag polyfil*@
+    <script id="DragDropTouch" src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
+    <script type="text/javascript">
+
+        function DragMonitor()
+        {
+            // dragstart
+            document.addEventListener('drop', function(ev) {
+                alert('Dropped handled on js.');
+            
+            });
+        }
+
+    </script>
+
+    <style type="text/css">
+    /** Simple drag and drop with Blazor CSS **/
+
+
+    .dropzone {
+        padding: 30px;
+        border: 1px dashed #75868a;
+        list-style: none;
+    }
+
+    .draggable {
+        margin-bottom: 10px;
+        padding: 10px 25px;
+        border: 1px solid #424d5c;
+        cursor: grab;
+        background: #5c6b7f;
+        color: #ffffff;
+        border-radius: 5px;
+        width: 250px;
+    }
+
+
+    </style>
+
+
+</head>
+<body>
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>
